@@ -6,24 +6,30 @@ namespace Chessington.GameEngine.Pieces
 {
     public class Pawn : Piece
     {
-        public Pawn(Player player) 
+        public Pawn(Player player)
             : base(player) { }
 
         public override IEnumerable<Square> GetAvailableMoves(Board board)
         {
+            var currentPosition = board.FindPiece(this);
             var SquareList = new List<Square>();
-
-            var BlackSquare = new Square(2, 0);
-
-            var WhiteSquare = new Square(6, 0);
 
             if (Player == Player.White)
             {
-                SquareList.Add(WhiteSquare);
+                SquareList.Add(new Square(currentPosition.Row - 1, currentPosition.Col));
+                if (!HasMoved)
+                {
+                    SquareList.Add(new Square(currentPosition.Row - 2, currentPosition.Col));
+                }
             }
-
-            SquareList.Add(BlackSquare);
-
+            else
+            {
+                SquareList.Add(new Square(currentPosition.Row + 1, currentPosition.Col));
+                if (!HasMoved)
+                {
+                    SquareList.Add(new Square(currentPosition.Row + 2, currentPosition.Col));
+                }
+            }
 
             return SquareList;
         }
