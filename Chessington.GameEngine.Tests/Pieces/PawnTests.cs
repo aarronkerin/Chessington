@@ -5,10 +5,11 @@ using NUnit.Framework;
 namespace Chessington.GameEngine.Tests.Pieces
 {
     [TestFixture]
+
     public class PawnTests
     {
         [Test]
-        public void WhitePawns_CanMoveOneSquareUp()
+        public void WhitePawnsCanMoveOneSquareUp()
         {
             var board = new Board();
             var pawn = new Pawn(Player.White);
@@ -20,7 +21,7 @@ namespace Chessington.GameEngine.Tests.Pieces
         }
 
         [Test]
-        public void BlackPawns_CanMoveOneSquareDown()
+        public void BlackPawnsCanMoveOneSquareDown()
         {
             var board = new Board();
             var pawn = new Pawn(Player.Black);
@@ -29,6 +30,7 @@ namespace Chessington.GameEngine.Tests.Pieces
             var moves = pawn.GetAvailableMoves(board);
 
             moves.Should().Contain(Square.At(2, 0));
+
         }
     }
 }
